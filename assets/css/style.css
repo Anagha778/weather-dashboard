@@ -89,9 +89,29 @@ header
   margin-bottom: 5px;
 }
 
-.uvindex{
+.greenuvIndex{
+    background-color:green;
+    color: black;
+}
+
+.yellowuvIndex{
+    background-color:yellow;
+    color: black; 
+}
+
+.orangeuvIndex{
+    background-color:orange;
+    color: black;  
+}
+
+.reduvIndex{
   background-color: red;
   color: white;
+}
+
+.violetuvIndex{
+    background-color:violet;
+    color: black;   
 }
 
 .weather5{

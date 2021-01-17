@@ -18,7 +18,26 @@ function sendUVI(UVIndex){
 
     GUVIndex = UVIndex;  
     uvbodyEl.classList="card-text";
-    uvbodyEl.innerHTML = "UV Index: <span class='uvindex'>"+GUVIndex+"</span>";
+    if(GUVIndex >=0 && GUVIndex <= 2.99)
+    {
+        uvbodyEl.innerHTML = "UV Index: <span class='greenuvIndex'>"+GUVIndex+"</span>";
+    }
+    else if(GUVIndex >=3 && GUVIndex <= 5.99)
+    {
+        uvbodyEl.innerHTML = "UV Index: <span class='yellowuvIndex'>"+GUVIndex+"</span>";
+    }
+    else if(GUVIndex >=6 && GUVIndex <= 7.99)
+    {
+        uvbodyEl.innerHTML = "UV Index: <span class='orangeuvIndex'>"+GUVIndex+"</span>";
+    }
+    else if(GUVIndex >=8 && GUVIndex <= 10.99)
+    {
+        uvbodyEl.innerHTML = "UV Index: <span class='reduvIndex'>"+GUVIndex+"</span>";
+    }
+    else if(GUVIndex >=11)
+    {
+        uvbodyEl.innerHTML = "UV Index: <span class='violetuvIndex'>"+GUVIndex+"</span>";
+    }
   };
   
   function getUVI(lat,lon,date)
