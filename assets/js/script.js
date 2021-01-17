@@ -23,7 +23,7 @@ function sendUVI(UVIndex){
   
   function getUVI(lat,lon,date)
   {   var uvivar = 0;
-      var apiUrluvi = "http://api.openweathermap.org/data/2.5/onecall/timemachine?lat="+ lat +"&lon="+ lon +"&dt="+date+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial"
+      var apiUrluvi = "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat="+ lat +"&lon="+ lon +"&dt="+date+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial"
       fetch(apiUrluvi).then(function(response) {
           if (response.ok) {
             response.json().then(function(data) {
@@ -48,7 +48,7 @@ function sendUVI(UVIndex){
   
 //function to get 5 days forecast
 var getfivedayWeatherDetails = function(cityname){
-    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
     var datevar = 0;
     var tempvar = 0;
     var humidityvar = 0;
@@ -225,7 +225,7 @@ function displayWeather(data,cityname)
 //function to get todays temperature
 var gettodayWeatherDetails = function(cityname){
     
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
    
      
     fetch(apiUrl).then(function(response)
