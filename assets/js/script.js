@@ -113,6 +113,31 @@ var getfivedayWeatherDetails = function(cityname){
   };
   
 
+//Add entry to local storage
+function addTorepository(cityName)
+{
+  var flag = false;  
+  //add entry to local repository
+    for(var i=0;i<cities.length;i++)
+    {
+        if(cityName.toLowerCase() === cities[i].toLowerCase())
+        {
+            flag=true;
+            break;
+        }
+    }
+    if(flag===false)
+    {
+    // create a span element to hold city name
+    var titleEl = document.createElement("li");
+    titleEl.className = "cities-name";
+    titleEl.textContent = cityName;
+    citiesEl.appendChild(titleEl);
+    titleEl.onclick = dynamicEvent;
+    cities.push(cityName);
+    localStorage.setItem("cities",JSON.stringify(cities));
+    }
+};
 
 
 //Display todays weather data
