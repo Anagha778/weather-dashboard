@@ -1,6 +1,30 @@
 
 //Global variables
 var cities =[];
+var userFormEl = document.querySelector("#user-form");
+var nameInputEl = document.querySelector("#search");
+var citiesEl = document.querySelector(".cities-list");
+
+
+//Search city
+var searchCity = function(event)
+{ 
+  event.preventDefault();
+    
+    var cityName = nameInputEl.value.trim();
+    cityName = cityName.charAt(0).toUpperCase()+cityName.slice(1);
+    clearNodes();
+
+    if (cityName) 
+    {
+        gettodayWeatherDetails(cityName);
+        nameInputEl.value = "";      
+    } 
+    else 
+    {
+      alert("Please enter a City name");
+    }
+};
 
 //load cities from local storage
 var loadCities = function()
