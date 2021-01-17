@@ -77,10 +77,10 @@ var getfivedayWeatherDetails = function(cityname){
     fetch(apiUrl).then(function(response)
     {
         if (response.ok) 
-        {
+      {
           response.json().then(function(data) 
         {
-          for(var i=0;i<data.list.length;i+=8)
+          for(var i=0;i<data.list.length;i++)
           {
             var dateString = data.list[i].dt_txt;
             if (dateString.indexOf("15:00:00") !== -1)
@@ -122,9 +122,9 @@ var getfivedayWeatherDetails = function(cityname){
                 cardbodyEl.appendChild(humiditybodyEl);
             }
           }
-          });
-        } 
-        else
+        });
+      } 
+      else
         { 
           forecastEl.textContent = "Error: " + response.statusText;        
         }
