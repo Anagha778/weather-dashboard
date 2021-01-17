@@ -45,6 +45,73 @@ function sendUVI(UVIndex){
   };
 
 
+  
+//function to get 5 days forecast
+var getfivedayWeatherDetails = function(cityname){
+    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
+    var datevar = 0;
+    var tempvar = 0;
+    var humidityvar = 0;
+    var iconvar = "";
+    var iconurl="";
+  
+    fetch(apiUrl).then(function(response)
+    {
+        if (response.ok) 
+        {
+          response.json().then(function(data) 
+        {
+          for(var i=0;i<data.list.length;i+=8)
+          {
+            var dateString = data.list[i].dt_txt;
+            datevar = dateString.substring(0,10);
+            datevar = moment(datevar,"YYYY-MM-DD");
+            datevar = datevar.format('MM/DD/YYYY');
+            tempvar = data.list[i].main.temp;
+            humidityvar = data.list[i].main.humidity;
+            iconvar = data.list[i].weather[0].icon;
+            iconurl = "https:///openweathermap.org/img/w/" + iconvar + ".png";
+  
+            var cardEl = document.createElement("div");
+            cardEl.classList = "card col-md-2 d-flex flex-column forecast-card";
+            forecastEl.appendChild(cardEl);
+  
+            var cardbodyEl = document.createElement("div");
+            cardbodyEl.classList="card-body";
+            cardEl.appendChild(cardbodyEl);
+  
+            var cardtitleEl = document.createElement("h3");
+            cardtitleEl.classList = "card-title forecast-title";
+            cardtitleEl.innerHTML = datevar;
+            cardbodyEl.appendChild(cardtitleEl);
+  
+            var imgvar = document.createElement("img");
+            imgvar.classList = "card-text";
+            imgvar.setAttribute("src",iconurl);
+            cardbodyEl.appendChild(imgvar);
+  
+            var tempbodyEl = document.createElement("div");
+            tempbodyEl.classList="card-text forecast-text";
+            tempbodyEl.innerHTML = "Temp: "+tempvar+"&#8457";
+            cardbodyEl.appendChild(tempbodyEl);
+  
+            var humiditybodyEl = document.createElement("div");
+            humiditybodyEl.classList="card-text forecast-text";
+            humiditybodyEl.innerHTML = "Humidity: "+humidityvar+"%";
+            cardbodyEl.appendChild(humiditybodyEl);
+          }
+          });
+        } 
+        else
+        { 
+          forecastEl.textContent = "Error: " + response.statusText;        
+        }
+      })
+      .catch(function(error) {
+        forecastEl.textContent = "Unable to connect"; 
+    });
+  };
+  
 
 
 
