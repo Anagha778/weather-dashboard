@@ -83,41 +83,44 @@ var getfivedayWeatherDetails = function(cityname){
           for(var i=0;i<data.list.length;i+=8)
           {
             var dateString = data.list[i].dt_txt;
-            datevar = dateString.substring(0,10);
-            datevar = moment(datevar,"YYYY-MM-DD");
-            datevar = datevar.format('MM/DD/YYYY');
-            tempvar = data.list[i].main.temp;
-            humidityvar = data.list[i].main.humidity;
-            iconvar = data.list[i].weather[0].icon;
-            iconurl = "https:///openweathermap.org/img/w/" + iconvar + ".png";
-  
-            var cardEl = document.createElement("div");
-            cardEl.classList = "card col-md-2 d-flex flex-column forecast-card";
-            forecastEl.appendChild(cardEl);
-  
-            var cardbodyEl = document.createElement("div");
-            cardbodyEl.classList="card-body";
-            cardEl.appendChild(cardbodyEl);
-  
-            var cardtitleEl = document.createElement("h3");
-            cardtitleEl.classList = "card-title forecast-title";
-            cardtitleEl.innerHTML = datevar;
-            cardbodyEl.appendChild(cardtitleEl);
-  
-            var imgvar = document.createElement("img");
-            imgvar.classList = "card-text";
-            imgvar.setAttribute("src",iconurl);
-            cardbodyEl.appendChild(imgvar);
-  
-            var tempbodyEl = document.createElement("div");
-            tempbodyEl.classList="card-text forecast-text";
-            tempbodyEl.innerHTML = "Temp: "+tempvar+"&#8457";
-            cardbodyEl.appendChild(tempbodyEl);
-  
-            var humiditybodyEl = document.createElement("div");
-            humiditybodyEl.classList="card-text forecast-text";
-            humiditybodyEl.innerHTML = "Humidity: "+humidityvar+"%";
-            cardbodyEl.appendChild(humiditybodyEl);
+            if (dateString.indexOf("15:00:00") !== -1)
+           {
+                datevar = dateString.substring(0,10);
+                datevar = moment(datevar,"YYYY-MM-DD");
+                datevar = datevar.format('MM/DD/YYYY');
+                tempvar = data.list[i].main.temp;
+                humidityvar = data.list[i].main.humidity;
+                iconvar = data.list[i].weather[0].icon;
+                iconurl = "https:///openweathermap.org/img/w/" + iconvar + ".png";
+      
+                var cardEl = document.createElement("div");
+                cardEl.classList = "card col-md-2 d-flex flex-column forecast-card";
+                forecastEl.appendChild(cardEl);
+      
+                var cardbodyEl = document.createElement("div");
+                cardbodyEl.classList="card-body";
+                cardEl.appendChild(cardbodyEl);
+      
+                var cardtitleEl = document.createElement("h3");
+                cardtitleEl.classList = "card-title forecast-title";
+                cardtitleEl.innerHTML = datevar;
+                cardbodyEl.appendChild(cardtitleEl);
+      
+                var imgvar = document.createElement("img");
+                imgvar.classList = "card-text";
+                imgvar.setAttribute("src",iconurl);
+                cardbodyEl.appendChild(imgvar);
+      
+                var tempbodyEl = document.createElement("div");
+                tempbodyEl.classList="card-text forecast-text";
+                tempbodyEl.innerHTML = "Temp: "+tempvar+"&#8457";
+                cardbodyEl.appendChild(tempbodyEl);
+      
+                var humiditybodyEl = document.createElement("div");
+                humiditybodyEl.classList="card-text forecast-text";
+                humiditybodyEl.innerHTML = "Humidity: "+humidityvar+"%";
+                cardbodyEl.appendChild(humiditybodyEl);
+            }
           }
           });
         } 
