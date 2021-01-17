@@ -12,6 +12,42 @@ var weatherrowEl = document.querySelector(".weather-row");
 var forecastEl = document.querySelector(".forecast-row");
 
 
+
+//function to get UV Index
+function sendUVI(UVIndex){
+
+    GUVIndex = UVIndex;  
+    uvbodyEl.classList="card-text";
+    uvbodyEl.innerHTML = "UV Index: <span class='uvindex'>"+GUVIndex+"</span>";
+  };
+  
+  function getUVI(lat,lon,date)
+  {   var uvivar = 0;
+      var apiUrluvi = "http://api.openweathermap.org/data/2.5/onecall/timemachine?lat="+ lat +"&lon="+ lon +"&dt="+date+"&appid=eb88f60513f97685d54ad8308a28db93&units=imperial"
+      fetch(apiUrluvi).then(function(response) {
+          if (response.ok) {
+            response.json().then(function(data) {
+              
+              uvivar = data.current.uvi;
+              UVIndex = uvivar; 
+              console.log("inside get"+UVIndex);  
+              sendUVI(UVIndex);         
+            });
+          } 
+          else
+          {
+            alert("Error: " + response.statusText);
+          }
+        })
+        .catch(function(error) {
+          weatherrowEl.textContent = "Error: " + cityname+" city "+ response.statusText
+      });
+  };
+
+
+
+
+
 //Display todays weather data
 function displayWeather(data,cityname)
 {
