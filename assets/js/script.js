@@ -11,6 +11,53 @@ var citieslistEl = document.getElementsByTagName("li");
 var weatherrowEl = document.querySelector(".weather-row");
 var forecastEl = document.querySelector(".forecast-row");
 
+//function to get todays temperature
+var gettodayWeatherDetails = function(cityname){
+    
+    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=eb88f60513f97685d54ad8308a28db93&units=imperial";
+   
+     
+    fetch(apiUrl).then(function(response)
+     {
+        if (response.ok)
+        {
+          response.json().then(function(data) 
+          {
+            displayWeather(data,cityname);          
+          });
+        }         
+        else
+        {   
+            weatherrowEl.textContent = "Error: " + cityname+" city "+ response.statusText
+        }
+    })
+    .catch(function(error) {
+      weatherrowEl.textContent = "Unable to connect";
+  });
+};
+
+//function to clear nodes for next data
+function clearNodes(){
+  if(weatherrowEl.hasChildNodes())
+    {
+      while (weatherrowEl.hasChildNodes())
+       {  
+        weatherrowEl.removeChild(weatherrowEl.firstChild);
+       }
+    }
+
+    weather5El.textContent="";
+    weatherrowEl.textContent="";
+
+    if(forecastEl.hasChildNodes())
+    {
+      while (forecastEl.hasChildNodes())
+       {  
+        forecastEl.removeChild(forecastEl.firstChild);
+       }
+    }
+};
+
 
 //function to display weather data on click of links
 function dynamicEvent(){
